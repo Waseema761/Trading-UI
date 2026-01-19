@@ -16,7 +16,7 @@ pipeline {
             }
         }
 
-        stage('Check Node Version') {
+        stage('Check Node & NPM') {
             steps {
                 sh 'node -v'
                 sh 'npm -v'
