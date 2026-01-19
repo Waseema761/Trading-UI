@@ -2,13 +2,24 @@ pipeline {
     agent any
 
     tools {
-        nodejs "Nodejs"   // same name you added in Jenkins tools
+        nodejs "node16"
+    }
+
+    environment {
+        NODE_OPTIONS = "--openssl-legacy-provider"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git url:'https://github.com/Waseema761/Trading-UI.git', branch: 'master'
+                git url: 'https://github.com/Waseema761/Trading-UI.git', branch: 'master'
+            }
+        }
+
+        stage('Check Node Version') {
+            steps {
+                sh 'node -v'
+                sh 'npm -v'
             }
         }
 
