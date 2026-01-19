@@ -5,10 +5,6 @@ pipeline {
         nodejs "Nodejs"
     }
 
-    environment {
-        NODE_OPTIONS = "--openssl-legacy-provider"
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -16,7 +12,7 @@ pipeline {
             }
         }
 
-        stage('Check Node Version') {
+        stage('Check Node & NPM') {
             steps {
                 sh 'node -v'
                 sh 'npm -v'
@@ -31,7 +27,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'npm run build'
+                sh 'NODE_OPTIONS=--openssl-legacy-provider npm run build'
             }
         }
 
